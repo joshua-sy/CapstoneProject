@@ -66,5 +66,5 @@ dotnet run
 
 Install the SVF dependencies if required
 ```
-npm i --silent svf-lib --prefix
+npm i svf-lib
 ```
