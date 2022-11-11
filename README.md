@@ -1,53 +1,31 @@
-# CapstoneProject
+# CapstoneProject Spring 2022
+# Project Members
+
+-   Aung Soe Kyaw   -   aung.s.kyaw@student.uts.edu.au
+-   Tien Long Lam   -   lamtienlong9@gmail.com (preferred) / lamtienlong@student.uts.edu.au
 
 # Installation guide
 
-## 1. Install SVF-example
-
-### Install SVF and its dependence (LLVM pre-built binary) via npm
-```
-npm i --silent svf-lib --prefix ${HOME}
-```
-
-### Clone repository
-```
-git clone https://github.com/SVF-tools/SVF-example.git
-```
-
-### Setup SVF environment and build your project 
-```
-source ./env.sh
-```
-cmake the project (`cmake -DCMAKE_BUILD_TYPE=Debug .` for debug build)
-```
-cmake . && make
-```
-### Analyze a bc file using svf-ex executable
-```
-clang -S -c -g -fno-discard-value-names -emit-llvm example.c -o example.ll
-./bin/svf-ex example.ll
-```
-
-## 2. Install Nodejs
+## 1. Install Nodejs
 ```
 sudo apt install nodejs
 
 ```
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
 
-## 3. Install Angular
+## 2. Install Angular
 ```
 sudo npm install -g @angular/cli
 
 ```
 https://angular.io/guide/setup-local
 
-## 4. Clone this repo
+## 3. Clone this repo
 ```
-git clone https://github.com/Ian36/CapstoneProject.git
+git clone https://github.com/Re-Tails/CapstoneProject.git
 ```
 
-## 5. Install Dotnet
+## 4. Install Dotnet
 
 ### Add the Microsoft package signing key
 ```
@@ -73,8 +51,20 @@ sudo apt-get update; \
 ```
 https://docs.microsoft.com/en-au/dotnet/core/install/linux-ubuntu#2004-
 
+## 7. Update the app
+```
+cd  ClientApp \
+npm install
+```
 ## 6. Run the app
 Run the following command from the CapstoneProject repo folder:
 ```
 dotnet run
+```
+
+## Notes
+
+Install the SVF dependencies if required
+```
+npm i --silent svf-lib --prefix
 ```
