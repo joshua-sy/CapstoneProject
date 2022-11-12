@@ -54,7 +54,8 @@ https://docs.microsoft.com/en-au/dotnet/core/install/linux-ubuntu#2004-
 ## 7. Update the app
 ```
 cd  ClientApp \
-npm install
+npm install \
+npm run start //note: this will only run the Client App
 ```
 ## 6. Run the app
 Run the following command from the CapstoneProject repo folder:
