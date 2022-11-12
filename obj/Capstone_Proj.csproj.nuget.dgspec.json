@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/long/repos/CapstoneProject/Capstone_Proj.csproj": {}
+    "/mnt/d/Documents/UTS/spring2022/capstone/CapstoneProject/Capstone_Proj.csproj": {}
   },
   "projects": {
-    "/home/long/repos/CapstoneProject/Capstone_Proj.csproj": {
+    "/mnt/d/Documents/UTS/spring2022/capstone/CapstoneProject/Capstone_Proj.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/long/repos/CapstoneProject/Capstone_Proj.csproj",
+        "projectUniqueName": "/mnt/d/Documents/UTS/spring2022/capstone/CapstoneProject/Capstone_Proj.csproj",
         "projectName": "Capstone_Proj",
-        "projectPath": "/home/long/repos/CapstoneProject/Capstone_Proj.csproj",
-        "packagesPath": "/home/long/.nuget/packages/",
-        "outputPath": "/home/long/repos/CapstoneProject/obj/",
+        "projectPath": "/mnt/d/Documents/UTS/spring2022/capstone/CapstoneProject/Capstone_Proj.csproj",
+        "packagesPath": "/home/pyroseven/.nuget/packages/",
+        "outputPath": "/mnt/d/Documents/UTS/spring2022/capstone/CapstoneProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/long/.nuget/NuGet/NuGet.Config"
+          "/home/pyroseven/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -24,6 +24,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -35,6 +36,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.SpaServices.Extensions": {
               "target": "Package",
@@ -47,7 +49,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -59,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.424/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }
