@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Re-Tails/CapstoneProject#readme",
   "dependencies": {
-    "svf-lib": "^1.0.1275"
+    "svf-lib": "^1.0.1448"
   },
-  "devDependencies": {}
+  "volta": {
+    "node": "15.14.0"
+  }
 }

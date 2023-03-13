@@ -10,6 +10,7 @@ export class DirectoryComponent implements OnInit {
 
   @Output() switchFileEventEmitter = new EventEmitter<any>();
   @Output() createNewFileEventEmitter = new EventEmitter<any>();
+  @Output() closeFileEventEmitter = new EventEmitter<any>();
   @Input() files;
   @Input() selectedFile;
   constructor() { }
@@ -25,6 +26,10 @@ export class DirectoryComponent implements OnInit {
 
   createNewFile() {
     this.createNewFileEventEmitter.emit();
+  }
+
+  closeFile(file) {
+    this.closeFileEventEmitter.emit(file);
   }
 
 }

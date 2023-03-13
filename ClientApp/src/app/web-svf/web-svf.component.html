@@ -1,21 +1,22 @@
-  <div class="web-svf">
-    <app-toolbar (runEventEmitter)="run($event)" ></app-toolbar>
-    <as-split style="border-radius: 4px;" direction="horizontal" [gutterSize] = "5">
-      <as-split-area class="graphs" [size]="10">
-        <app-directory [files]="files" [selectedFile]="selectedFile" (switchFileEventEmitter)="switchFile($event)" (createNewFileEventEmitter)="createNewFile()"></app-directory>
-      </as-split-area>
-      <as-split-area class="graphs" [size]="45">
-        <as-split direction="vertical" [gutterSize] = "5">
-          <as-split-area class="input" [size]="67">
-            <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm"></app-input>
-          </as-split-area>
-          <as-split-area class="output" [size]="33">
-            <app-output #output ></app-output>
-          </as-split-area>
-        </as-split>
-      </as-split-area>
-      <as-split-area class="graphs" [size]="45">
-        <app-graphs #graphs (selectLineOnInput)="selectLineOnInput($event)"></app-graphs>
-      </as-split-area>
-    </as-split>
-  </div>
+<div class="web-svf">
+  <app-toolbar (runEventEmitter)="run($event)"></app-toolbar>
+  <as-split style="border-radius: 4px;" direction="horizontal" [gutterSize]="5">
+    <as-split-area class="graphs" [size]="10">
+      <app-directory [files]="files" [selectedFile]="selectedFile" (switchFileEventEmitter)="switchFile($event)"
+        (createNewFileEventEmitter)="createNewFile()" (closeFileEventEmitter)="closeFile($event)"></app-directory>
+    </as-split-area>
+    <as-split-area class="graphs" [size]="45">
+      <as-split direction="vertical" [gutterSize]="5">
+        <as-split-area class="input" [size]="67">
+          <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm"></app-input>
+        </as-split-area>
+        <as-split-area class="output" [size]="33">
+          <app-output #output></app-output>
+        </as-split-area>
+      </as-split>
+    </as-split-area>
+    <as-split-area class="graphs" [size]="45">
+      <app-graphs #graphs (selectLineOnInput)="selectLineOnInput($event)"></app-graphs>
+    </as-split-area>
+  </as-split>
+</div>

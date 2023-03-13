@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/pyroseven/.dotnet/store/|arch|/|tfm|",
-      "/home/pyroseven/.nuget/packages"
+      "/home/tien/.dotnet/store/|arch|/|tfm|",
+      "/home/tien/.nuget/packages"
     ]
   }
 }

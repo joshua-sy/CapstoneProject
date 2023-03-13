@@ -1,7 +1,9 @@
 <div class="directory">
-    <div class="d-flex flex-column" >
-        <div class="d-flex align-items-center file-item" (click)="switchFile(file)" [ngClass]="file.id === selectedFile.id ? 'selected-file' : ''" *ngFor="let file of files">
-            {{file.name}}
+    <div class="d-flex flex-column">
+        <div class="d-flex align-items-center file-item" (click)="switchFile(file)"
+            [ngClass]="file.id === selectedFile.id ? 'selected-file' : ''" *ngFor="let file of files">
+            <div>{{file.name}}</div>
+            <div class="align-right"><button (click)="closeFile(file)">Close</button></div>
         </div>
         <div (click)="createNewFile()" class="d-flex justify-content-center align-items-center file-item">
             <i class="fa fa-plus add-icon"></i>

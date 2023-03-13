@@ -67,4 +67,11 @@ export class WebSvfComponent implements OnInit {
     this.input.selectLine(parseInt(event));
   }
 
+  closeFile(file) {
+    const index = this.files.indexOf(file, 0);
+    if (index >= 0) {
+      this.files.splice(index, 1);
+    }
+  }
+
 }
