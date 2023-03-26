@@ -11,10 +11,10 @@ import { EventEmitter } from '@angular/core';
 })
 export class GraphsComponent implements OnInit {
   @Output() selectLineOnInput = new EventEmitter();
-  
+
   outputs = [];
 
-  constructor(private elementRef:ElementRef) { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     wasmFolder('/assets/@hpcc-js/wasm/dist/');
@@ -27,7 +27,7 @@ export class GraphsComponent implements OnInit {
     } else {
       var height = window.innerHeight;
       var width = window.innerWidth;
-      graphviz('#graph', {height: height, width: width}).renderDot(this.outputs[$event.index].graph);
+      graphviz('#graph', { height: height, width: width }).renderDot(this.outputs[$event.index].graph);
       setTimeout(() => {
         this.addNodeEventListeners();
       }, 1000);
@@ -44,21 +44,34 @@ export class GraphsComponent implements OnInit {
     // this.elementRef.nativeElement.querySelectorAll('.node')
     //   .addEventListener('click', this.onClick.bind(this));
   }
-  
+
   onClick(event) {
     let msg = event.path[0].innerHTML as string;
 
     let searchQuery = "line: ";
     let charAt = msg.search(searchQuery);
-    if(charAt == -1) {
+    if (charAt == -1) {
       searchQuery = "ln: ";
       charAt = msg.search(searchQuery);
     }
-    if(charAt != -1) {
+    if (charAt != -1) {
       let lineNumber = msg.substring(charAt + searchQuery.length);
       lineNumber = lineNumber.substring(0, lineNumber.indexOf(" "));
       this.selectLineOnInput.emit(lineNumber);
     }
+  }
+
+  removeTab(index: number) {
+    console.log(index)
+    event.stopPropagation();
+
+    this.outputs.splice(index, 1);
+    var height = window.innerHeight;
+    var width = window.innerWidth;
+    graphviz('#graph', { height: height, width: width }).renderDot(this.outputs[index].graph);
+    setTimeout(() => {
+      this.addNodeEventListeners();
+    }, 1000);
   }
 
 }

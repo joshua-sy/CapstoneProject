@@ -3,7 +3,7 @@ source_filename = "example.c"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
-@.str = private unnamed_addr constant [14 x i8] c"Hello, there!\00", align 1
+@.str = private unnamed_addr constant [14 x i8] c"Hello, World!\00", align 1
 
 ; Function Attrs: noinline nounwind optnone uwtable
 define dso_local i32 @main() #0 !dbg !10 {
@@ -24,7 +24,7 @@ attributes #1 = { "frame-pointer"="all" "no-trapping-math"="true" "stack-protect
 !llvm.ident = !{!9}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: "Ubuntu clang version 14.0.0-1ubuntu1", isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, splitDebugInlining: false, nameTableKind: None)
-!1 = !DIFile(filename: "example.c", directory: "/home/tien/GitHub/CapstoneProject", checksumkind: CSK_MD5, checksum: "d9331d2fa7cfbce7f73ac3386cf9c941")
+!1 = !DIFile(filename: "example.c", directory: "/home/tien/GitHub/CapstoneProject", checksumkind: CSK_MD5, checksum: "322ae4e780d412feca4936656c11029c")
 !2 = !{i32 7, !"Dwarf Version", i32 5}
 !3 = !{i32 2, !"Debug Info Version", i32 3}
 !4 = !{i32 1, !"wchar_size", i32 4}
