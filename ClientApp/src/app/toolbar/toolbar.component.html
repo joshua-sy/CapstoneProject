@@ -5,7 +5,11 @@
   <div class="d-flex align-items-center tools justify-content-end">
     <div style="margin-right: 5%;">
       <span>Compile Options: </span>
-      <input [(ngModel)]="compileOptions" type="text" class="compile-option-input">
+    <!--<input [(ngModel)]="compileOptions" type="text" class="compile-option-input">!-->
+      <app-multi-select-dropdown
+        [list]="list"
+       >
+      </app-multi-select-dropdown>
       <button type="button" class="btn btn-secondary reset-btn" (click)="resetCompileOptions()">
         Reset Default Options
       </button>
