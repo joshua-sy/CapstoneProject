@@ -5,6 +5,7 @@
 -   Tien Long Lam   -   lamtienlong9@gmail.com (preferred) / lamtienlong@student.uts.edu.au
 
 # Installation guide
+Note: These instructions are for linux, which this project is most compatible with. This can be accessed using WSL if using windows.
 
 ## 1. Install Nodejs
 ```
