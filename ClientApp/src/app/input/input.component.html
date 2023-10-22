@@ -8,6 +8,14 @@
           viewportMargin: '20'
         }"></ngx-codemirror>
       </mat-tab>
+      <mat-tab label="GPT Generate">
+        <ngx-codemirror #codeMirror [options]="{
+          lineNumbers: true,
+          theme: 'material',
+          mode: 'clike',
+          viewportMargin: '20'
+        }"></ngx-codemirror>
+      </mat-tab>
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{
           lineNumbers: true,
