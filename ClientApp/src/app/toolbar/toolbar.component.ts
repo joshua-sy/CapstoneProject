@@ -1,5 +1,6 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,23 +8,58 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  defaultOptions: string = "-S -c -g -fno-discard-value-names -emit-llvm"
+  // defaultOptions: string = "-S -c -g -fno-discard-value-names -emit-llvm"
   compileOptions: string;
 
-  constructor() { }
+  list : any[];
+
+  constructor(){
+    this.list = 
+      [
+        {name :'-g',checked : true},
+        {name :'-c',checked : true},
+        {name :'-S',checked : true},
+        {name :'-fno-discard-value-names',checked : true},
+        {name :'-emit-llvm',checked : true},
+        {name :'-pass-exit-codes',checked : false},        
+        {name :'-E',checked : false},
+        {name :'-v',checked : false},
+        {name :'-pipe',checked : false},
+        {name :'--help',checked : false},
+        {name :'-fcanon-prefix-map',checked : false},
+      ]
+  }
 
   @Output() runEventEmitter = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.resetCompileOptions();
   }
+ 
+  getCheckedString(): string {
+    return this.list.filter(item => item.checked).map(item => item.name).join(' ');
+  }
 
   run() {
-    this.runEventEmitter.emit(this.compileOptions);
+    console.log("compile options:", this.getCheckedString());
+    this.runEventEmitter.emit(this.getCheckedString());
   }
 
-  resetCompileOptions() {
-    this.compileOptions = this.defaultOptions;
+  resetCompileOptions() { 
+    this.list = 
+    [
+      {name :'-g',checked : true},
+      {name :'-c',checked : true},
+      {name :'-S',checked : true},
+      {name :'-fno-discard-value-names',checked : true},
+      {name :'-emit-llvm',checked : true},
+      {name :'-pass-exit-codes',checked : false},        
+      {name :'-E',checked : false},
+      {name :'-v',checked : false},
+      {name :'-pipe',checked : false},
+      {name :'--help',checked : false},
+      {name :'-fcanon-prefix-map',checked : false},
+    ]
+    this.compileOptions = this.getCheckedString();
   }
-
 }

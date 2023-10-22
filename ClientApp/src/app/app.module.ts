@@ -19,7 +19,10 @@ import { OutputComponent } from './output/output.component';
 import { GraphsComponent } from './graphs/graphs.component';
 
 import { AngularSplitModule } from 'angular-split';
+
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MultiSelectDropdownComponent } from './toolbar/multi-select-dropdown/multi-select-dropdown.component';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DirectoryComponent } from './directory/directory.component';
 
@@ -34,6 +37,7 @@ import { DirectoryComponent } from './directory/directory.component';
     OutputComponent,
     GraphsComponent,
     ToolbarComponent,
+    MultiSelectDropdownComponent,
     DirectoryComponent,
   ],
   imports: [
@@ -54,5 +58,8 @@ import { DirectoryComponent } from './directory/directory.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [
+    MultiSelectDropdownComponent
+  ]
 })
 export class AppModule {}
