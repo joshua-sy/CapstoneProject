@@ -9,12 +9,11 @@
         }"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="GPT Generate">
-        <ngx-codemirror #codeMirror [options]="{
+        <ngx-codemirror #gptgenerate [options]="{
           lineNumbers: true,
           theme: 'material',
-          mode: 'clike',
           viewportMargin: '20'
-        }"></ngx-codemirror>
+        }" (keydown.enter)="handleEnterKey()"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{
