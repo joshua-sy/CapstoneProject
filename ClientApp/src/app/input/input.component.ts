@@ -48,6 +48,8 @@ export class InputComponent implements OnInit {
   }
   handleEnterKey() {
     console.log("enter pressed line is ", this.lastEnteredLine);
+    console.log("calling api");
+    this.doOpenAICall();
     this.lastEnteredLine = '';
   }
 
@@ -70,16 +72,18 @@ export class InputComponent implements OnInit {
       {
         // TODO Change this to your own prompt
         content:
-          'Write a small rap song about 2 potatoes that are in love with Angular',
+          this.lastEnteredLine,
         role: 'user',
       },
     ];
 
-    this.openAiResult$ = this.openAiService.doOpenAICall(
+    this.openAiService.doOpenAICall(
       messages,
       0.5,
       'gpt-3.5-turbo',
       this.apiKey
-    );
+    ).subscribe((response: string) => {
+      console.log(response); // This is the string response from the API
+    });
   }
 }
