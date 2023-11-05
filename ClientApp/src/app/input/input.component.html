@@ -13,7 +13,8 @@
           lineNumbers: true,
           theme: 'material',
           viewportMargin: '20'
-        }" (keydown.enter)="handleEnterKey()"></ngx-codemirror>
+        }" 
+        (keydown)="onKeyDown($event)"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{

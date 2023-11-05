@@ -14,11 +14,10 @@ export class InputComponent implements OnInit {
   showLlvm: boolean = false;
   @Input() selectedFile: IFile;
   @Input() selectedLlvm: string;
-  @ViewChild('gptgenerate') gptgenerate: ElementRef;
   
   constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService) { }
   
-  apiKey = ''
+  apiKey =  ''
   public openAiResult$ = of('');
 
   ngOnInit(): void {
@@ -31,8 +30,25 @@ export class InputComponent implements OnInit {
   // }
 
   // Define a method to handle "Enter" key press
+
+  lastEnteredLine = '';
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.handleEnterKey();
+    }
+    else if (event.key == 'Backspace') {
+      if (this.lastEnteredLine.length > 0) {
+        // Remove the last letter from the string
+        this.lastEnteredLine = this.lastEnteredLine.slice(0, -1);
+      }
+    }
+    else {
+      this.lastEnteredLine += event.key;
+    }
+  }
   handleEnterKey() {
-      console.log("enter pressed")
+    console.log("enter pressed line is ", this.lastEnteredLine);
+    this.lastEnteredLine = '';
   }
 
   selectLine(lineNumber) {
