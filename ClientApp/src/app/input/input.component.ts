@@ -2,7 +2,6 @@ import 'zone.js/dist/zone';
 import { Component, ElementRef, Input, OnInit, ViewChild, inject } from '@angular/core';
 import { IFile } from '../models/file';
 import { OpenAIService, Message } from './inputApiCall';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-input',
@@ -17,8 +16,7 @@ export class InputComponent implements OnInit {
   
   constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService) { }
   
-  apiKey =  ''
-  public openAiResult$ = of('');
+  apiKey = ''
 
   ngOnInit(): void {
   }
@@ -32,6 +30,8 @@ export class InputComponent implements OnInit {
   // Define a method to handle "Enter" key press
 
   lastEnteredLine = '';
+  editorContent = '';
+  apiResponse = '';
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.handleEnterKey();
@@ -66,8 +66,8 @@ export class InputComponent implements OnInit {
   }
 
 
-  
   public doOpenAICall() {
+    let apiResponse = '';
     const messages: Message[] = [
       {
         // TODO Change this to your own prompt
@@ -82,8 +82,15 @@ export class InputComponent implements OnInit {
       0.5,
       'gpt-3.5-turbo',
       this.apiKey
-    ).subscribe((response: string) => {
-      console.log(response); // This is the string response from the API
+    ).subscribe((partialResponse: string) => {
+      // Append the partial response to the existing content
+      apiResponse = partialResponse;
+    }, null, () => {
+      // The third parameter in subscribe is the complete callback
+      // It's called when the response is fully received
+      console.log(apiResponse);
+      this.editorContent += apiResponse + '\n';
     });
+
   }
 }

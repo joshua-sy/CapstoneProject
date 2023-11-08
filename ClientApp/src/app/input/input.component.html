@@ -14,7 +14,9 @@
           theme: 'material',
           viewportMargin: '20'
         }" 
-        (keydown)="onKeyDown($event)"></ngx-codemirror>
+        (keydown)="onKeyDown($event)"
+        [(ngModel)]="editorContent"
+        ></ngx-codemirror>
       </mat-tab>
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{
