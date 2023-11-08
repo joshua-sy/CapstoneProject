@@ -16,22 +16,20 @@ export class InputComponent implements OnInit {
   
   constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService) { }
   
-  apiKey = ''
-
   ngOnInit(): void {
   }
-
-  // // Attach the event listener to the gptgenerate element
-  // ngAfterViewInit() {
-  //   const gptgenerateElement = this.gptgenerate.nativeElement;
-  //   gptgenerateElement.addEventListener('keydown', this.handleEnterKey);
-  // }
-
-  // Define a method to handle "Enter" key press
+  
+  //Enter your api key here...
+  apiKey = ''
+  
+  isPlaceholderVisible: boolean = true; 
+  isLoadingResponse: boolean = false; 
 
   lastEnteredLine = '';
   editorContent = '';
   apiResponse = '';
+  
+  // Define a method to handle "Enter" key press
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.handleEnterKey();
@@ -47,6 +45,8 @@ export class InputComponent implements OnInit {
     }
   }
   handleEnterKey() {
+    this.isLoadingResponse = true;
+    this.isPlaceholderVisible = true;
     console.log("enter pressed line is ", this.lastEnteredLine);
     console.log("calling api");
     //this.doOpenAICall();
@@ -65,12 +65,16 @@ export class InputComponent implements OnInit {
 
   }
 
+  onEditorContentChange(newValue: string) {
+    console.log("called modelchange");
+    this.editorContent = newValue;
+    this.isPlaceholderVisible = this.editorContent.trim() === ''; 
+  }
 
   public doOpenAICall() {
     let apiResponse = '';
     const messages: Message[] = [
       {
-        // TODO Change this to your own prompt
         content:
           this.lastEnteredLine,
         role: 'user',
@@ -89,6 +93,8 @@ export class InputComponent implements OnInit {
       // The third parameter in subscribe is the complete callback
       // It's called when the response is fully received
       console.log(apiResponse);
+      this.isLoadingResponse = false; 
+      this.isPlaceholderVisible = false;
       this.editorContent += apiResponse + '\n';
     });
 

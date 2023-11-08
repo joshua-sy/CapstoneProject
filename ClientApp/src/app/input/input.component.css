@@ -40,3 +40,13 @@
   flex: 0;
   min-width: 12px;
 }
+
+.placeholder {
+  color: #999; /* Set the color of the placeholder text */
+  pointer-events: none; /* Allows the editor to receive input, not the placeholder */
+  transition: opacity 0.3s; /* Add a transition effect for smoother visibility changes */
+}
+
+.placeholder.hidden {
+  opacity: 0; /* Hide the placeholder when not visible */
+}

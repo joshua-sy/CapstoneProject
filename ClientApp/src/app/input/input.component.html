@@ -18,7 +18,11 @@
         }" 
         (keydown)="onKeyDown($event)"
         [(ngModel)]="editorContent"
+        (ngModelChange)="onEditorContentChange($event)"
         ></ngx-codemirror>
+        <div class="placeholder" [ngClass]="{ 'hidden': !isPlaceholderVisible }">
+          {{ isLoadingResponse ? 'Loading response...' : 'Type your code here...' }}
+        </div>
       </mat-tab>
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{
