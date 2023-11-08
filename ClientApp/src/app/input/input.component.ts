@@ -29,6 +29,8 @@ export class InputComponent implements OnInit {
   editorContent = '';
   apiResponse = '';
   
+  allowedKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:'\",.<>?/\\~`-= ";
+
   // Define a method to handle "Enter" key press
   onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
@@ -40,7 +42,7 @@ export class InputComponent implements OnInit {
         this.lastEnteredLine = this.lastEnteredLine.slice(0, -1);
       }
     }
-    else {
+    else if (this.allowedKeys.includes(event.key) ) {
       this.lastEnteredLine += event.key;
     }
   }
@@ -66,7 +68,6 @@ export class InputComponent implements OnInit {
   }
 
   onEditorContentChange(newValue: string) {
-    console.log("called modelchange");
     this.editorContent = newValue;
     this.isPlaceholderVisible = this.editorContent.trim() === ''; 
   }
