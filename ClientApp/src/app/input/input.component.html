@@ -5,14 +5,16 @@
           lineNumbers: true,
           theme: 'material',
           mode: 'clike',
-          viewportMargin: '20'
+          viewportMargin: '20',
+          lineWrapping: true
+
         }"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="GPT Generate">
         <ngx-codemirror #gptgenerate [options]="{
-          lineNumbers: true,
           theme: 'material',
-          viewportMargin: '20'
+          viewportMargin: '20',
+          lineWrapping: true
         }" 
         (keydown)="onKeyDown($event)"
         [(ngModel)]="editorContent"

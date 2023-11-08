@@ -27,8 +27,8 @@
 }
 
 .split-view ngx-codemirror {
-  flex: 1;
-  display: flex;
+  display: grid;
+
 }
 
 .split-view ::ng-deep .CodeMirror {

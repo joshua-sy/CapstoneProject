@@ -49,7 +49,7 @@ export class InputComponent implements OnInit {
   handleEnterKey() {
     console.log("enter pressed line is ", this.lastEnteredLine);
     console.log("calling api");
-    this.doOpenAICall();
+    //this.doOpenAICall();
     this.lastEnteredLine = '';
   }
 
