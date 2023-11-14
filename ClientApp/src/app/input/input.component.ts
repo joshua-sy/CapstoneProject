@@ -1,7 +1,8 @@
 import 'zone.js/dist/zone';
-import { Component, ElementRef, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild  } from '@angular/core';
 import { IFile } from '../models/file';
 import { OpenAIService, Message } from './inputApiCall';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 //TODO limit
 
@@ -16,9 +17,14 @@ export class InputComponent implements OnInit {
   @Input() selectedFile: IFile;
   @Input() selectedLlvm: string;
   
-  constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService) { }
+  constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService ) { }
   
+  @ViewChild('gptgenerate') gptgenerate: any; // Use the correct type if available
+  
+
+
   ngOnInit(): void {
+    this.editorContent = "Hi! Welcome to Code GPT. Type in your query..."
   }
   
   //Enter your api key here...
@@ -53,10 +59,15 @@ export class InputComponent implements OnInit {
     this.isPlaceholderVisible = true;
     console.log("enter pressed line is ", this.lastEnteredLine);
     console.log("calling api");
-    this.doOpenAICall();
+    // this.doOpenAICall();
     this.lastEnteredLine = '';
   }
-
+  onTabChange(event: MatTabChangeEvent): void {
+    if (event.index === 2){    
+      if (this.gptgenerate && this.gptgenerate.codeMirror) {
+        this.gptgenerate.codeMirror.setValue(this.editorContent);
+      }
+  }}
   selectLine(lineNumber) {
     console.log(lineNumber);
     let code = this.elementRef.nativeElement.querySelectorAll('.CodeMirror-code')[0];

@@ -1,5 +1,5 @@
 <div class="split-view">
-    <mat-tab-group mat-align-tabs="start">
+    <mat-tab-group (selectedTabChange)="onTabChange($event)" mat-align-tabs="start">
       <mat-tab label="C Code">
         <ngx-codemirror #codeMirror [(ngModel)]="selectedFile.data" [options]="{
           lineNumbers: true,
@@ -20,18 +20,18 @@
         }"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="Code GPT">
-        <ngx-codemirror #gptgenerate [options]="{
+        <ngx-codemirror #gptgenerate [(ngModel)]="editorContent" [options]="{
           theme: 'material',
           viewportMargin: '20',
-          lineWrapping: true
+          lineWrapping: true,
+          extraKeys: {
+            Enter: false
+          }
         }" 
         (keydown)="onKeyDown($event)"
-        [(ngModel)]="editorContent"
         (ngModelChange)="onEditorContentChange($event)"
-        ></ngx-codemirror>
-        <div class="placeholder" [ngClass]="{ 'hidden': !isPlaceholderVisible }">
-          {{ isLoadingResponse ? 'Loading response...' : 'Type your code here...' }}
-        </div>
+        >
+      </ngx-codemirror>
       </mat-tab>
     </mat-tab-group>
 </div>
