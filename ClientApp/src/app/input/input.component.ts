@@ -22,7 +22,7 @@ export class InputComponent implements OnInit {
   }
   
   //Enter your api key here...
-  apiKey = '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'
+  apiKey = ''
   
   isPlaceholderVisible: boolean = true; 
   isLoadingResponse: boolean = false; 
