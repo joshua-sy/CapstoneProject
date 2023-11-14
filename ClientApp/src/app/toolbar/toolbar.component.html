@@ -3,13 +3,16 @@
     <span class="heading">WebSVF</span>
   </div>
   <div class="d-flex align-items-center tools justify-content-end">
-    <div style="margin-right: 5%;">
-      <span>Compile Options: </span>
-    <!--<input [(ngModel)]="compileOptions" type="text" class="compile-option-input">!-->
-      <app-multi-select-dropdown
-        [list]="list"
-       >
-      </app-multi-select-dropdown>
+    <div style="margin-right: 5%; display: flex; width: 90%; justify-content: end;">
+      <mat-form-field>
+        <mat-select placeholder="Ccompile Options As..." [(ngModel)]="selectedOption">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{ option.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <input *ngIf="selectedOption === 'Input'" [(ngModel)]="compileOptions" type="text" class="compile-option-input">
+    <app-multi-select-dropdown *ngIf="selectedOption === 'List'" [list]="list"></app-multi-select-dropdown>
       <button type="button" class="btn btn-secondary reset-btn" (click)="resetCompileOptions()">
         Reset Default Options
       </button>

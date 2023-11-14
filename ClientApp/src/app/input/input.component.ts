@@ -3,6 +3,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild, inject } from '@angula
 import { IFile } from '../models/file';
 import { OpenAIService, Message } from './inputApiCall';
 
+//TODO limit
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -20,7 +22,7 @@ export class InputComponent implements OnInit {
   }
   
   //Enter your api key here...
-  apiKey = ''
+  apiKey = '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'
   
   isPlaceholderVisible: boolean = true; 
   isLoadingResponse: boolean = false; 
@@ -51,7 +53,7 @@ export class InputComponent implements OnInit {
     this.isPlaceholderVisible = true;
     console.log("enter pressed line is ", this.lastEnteredLine);
     console.log("calling api");
-    //this.doOpenAICall();
+    this.doOpenAICall();
     this.lastEnteredLine = '';
   }
 
@@ -96,7 +98,7 @@ export class InputComponent implements OnInit {
       console.log(apiResponse);
       this.isLoadingResponse = false; 
       this.isPlaceholderVisible = false;
-      this.editorContent += apiResponse + '\n';
+      this.editorContent += "Gpt Response: " + apiResponse + '\n';
     });
 
   }

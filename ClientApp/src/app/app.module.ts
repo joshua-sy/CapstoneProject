@@ -25,6 +25,7 @@ import { MultiSelectDropdownComponent } from './toolbar/multi-select-dropdown/mu
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DirectoryComponent } from './directory/directory.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DirectoryComponent } from './directory/directory.component';
     CodemirrorModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatSelectModule,
     MatTabsModule,
     AngularSplitModule,
     FontAwesomeModule,
