@@ -8,7 +8,7 @@
     <as-split-area class="graphs" [size]="45">
       <as-split direction="vertical" [gutterSize]="5">
         <as-split-area class="input" [size]="67">
-          <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm"></app-input>
+          <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm" [(files)]="files"></app-input>
         </as-split-area>
         <as-split-area class="output" [size]="33">
           <app-output #output></app-output>

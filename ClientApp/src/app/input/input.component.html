@@ -20,6 +20,17 @@
         }"></ngx-codemirror>
       </mat-tab>
       <mat-tab label="Code GPT">
+        <div id="fileListDisplay">
+              <p style="display: inline-block;">test</p>
+              <mat-form-field  >
+                <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple (ngModelChange)="onFileSelectionChange()">
+                  <mat-option *ngFor="let file of files" [value]="file">
+                    <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
+                    {{ file.name }}
+                  </mat-option>
+                </mat-select> 
+              </mat-form-field>
+        </div>
         <ngx-codemirror #gptgenerate [(ngModel)]="editorContent" [options]="{
           theme: 'material',
           viewportMargin: '20',

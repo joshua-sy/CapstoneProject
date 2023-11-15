@@ -16,15 +16,16 @@ export class InputComponent implements OnInit {
   showLlvm: boolean = false;
   @Input() selectedFile: IFile;
   @Input() selectedLlvm: string;
-  
+  @Input() files: IFile[];
+  selectedFiles: any[] = [];
+
   constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService ) { }
   
-  @ViewChild('gptgenerate') gptgenerate: any; // Use the correct type if available
-  
+  @ViewChild('gptgenerate') gptgenerate: any; 
 
 
   ngOnInit(): void {
-    this.editorContent = "Hi! Welcome to Code GPT. Type in your query..."
+    this.editorContent = "Hi! Welcome to Code GPT. Edit this and enter your query..."
   }
   
   //Enter your api key here...
@@ -54,6 +55,12 @@ export class InputComponent implements OnInit {
       this.lastEnteredLine += event.key;
     }
   }
+
+  onFileSelectionChange(): void {
+    // Perform any additional logic based on the selectedFiles array
+    console.log('Selected Files:', this.selectedFiles);
+  }
+  
   handleEnterKey() {
     this.isLoadingResponse = true;
     this.isPlaceholderVisible = true;
@@ -84,6 +91,7 @@ export class InputComponent implements OnInit {
     this.editorContent = newValue;
     this.isPlaceholderVisible = this.editorContent.trim() === ''; 
   }
+
 
   public doOpenAICall() {
     let apiResponse = '';

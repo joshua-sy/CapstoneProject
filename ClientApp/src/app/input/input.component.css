@@ -25,6 +25,14 @@
     height: 100%;
   }
 }
+mat-form-field{
+  background-color: #fff;
+  border-radius: 4px;
+  width: 40%;
+  height: calc(1.5em + .75rem + 2px);
+  border: 1px solid #ced4da;
+  margin-left: 2%;
+}
 
 .split-view ngx-codemirror {
   display: grid;
@@ -41,6 +49,19 @@
   min-width: 12px;
 }
 
+
+.horizontal-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+#fileListDisplay {
+  padding-left: 4%;
+}
+
+.horizontal-list li {
+  margin-right: 10px; /* Adjust margin between list items as needed */
+}
 .placeholder {
   color: #999; /* Set the color of the placeholder text */
   pointer-events: none; /* Allows the editor to receive input, not the placeholder */
