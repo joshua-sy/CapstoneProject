@@ -24,7 +24,7 @@
               <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
               <div style="display: flex;">
                 <mat-form-field  >
-                  <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple (ngModelChange)="onFileSelectionChange()">
+                  <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple>
                     <mat-option *ngFor="let file of files" [value]="file">
                       <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
                       {{ file.name }}

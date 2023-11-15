@@ -55,13 +55,21 @@ export class InputComponent implements OnInit {
   sendQuery() {
     console.log("calling api");
     console.log("last entered message: ", this.lastEnteredMessage)
-    // this.doOpenAICall();
+    console.log('Selected Files:', this.selectedFiles);
+    let filesData = this.collateSelectedFilesData();
+    let message = filesData.length == 0 ? this.lastEnteredMessage : this.lastEnteredMessage + filesData;
+    this.doOpenAICall(message);
     this.lastEnteredMessage = '';
   }
 
-  onFileSelectionChange(): void {
+  collateSelectedFilesData(): string {
     // Perform any additional logic based on the selectedFiles array
-    console.log('Selected Files:', this.selectedFiles);
+    let filesDataStr = '';
+    this.selectedFiles.forEach(file=>{
+      filesDataStr += '\n' + file.name + '\n' + file.data;
+    })
+    console.log(filesDataStr);
+    return filesDataStr;
   }
 
   onTabChange(event: MatTabChangeEvent): void {
@@ -87,12 +95,12 @@ export class InputComponent implements OnInit {
   }
 
 
-  public doOpenAICall() {
+  public doOpenAICall(queryMessage:string) {
     let apiResponse = '';
     const messages: Message[] = [
       {
         content:
-          this.lastEnteredMessage,
+          queryMessage,
         role: 'user',
       },
     ];

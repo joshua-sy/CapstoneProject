@@ -31,7 +31,6 @@ mat-form-field{
   width: 40%;
   height: calc(1.5em + .75rem + 2px);
   border: 1px solid #ced4da;
-  margin-left: 2%;
   margin-right: 2%;
 }
 
