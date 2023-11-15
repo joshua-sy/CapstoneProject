@@ -56,11 +56,14 @@ export class InputComponent implements OnInit {
     }
   }
 
+  sendQuery() {
+    console.log("sent query");
+  }
   onFileSelectionChange(): void {
     // Perform any additional logic based on the selectedFiles array
     console.log('Selected Files:', this.selectedFiles);
   }
-  
+
   handleEnterKey() {
     this.isLoadingResponse = true;
     this.isPlaceholderVisible = true;

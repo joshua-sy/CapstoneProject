@@ -32,11 +32,11 @@ mat-form-field{
   height: calc(1.5em + .75rem + 2px);
   border: 1px solid #ced4da;
   margin-left: 2%;
+  margin-right: 2%;
 }
 
 .split-view ngx-codemirror {
   display: grid;
-
 }
 
 .split-view ::ng-deep .CodeMirror {
@@ -49,25 +49,7 @@ mat-form-field{
   min-width: 12px;
 }
 
-
-.horizontal-list {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-}
 #fileListDisplay {
-  padding-left: 4%;
+  padding: 2%;
 }
 
-.horizontal-list li {
-  margin-right: 10px; /* Adjust margin between list items as needed */
-}
-.placeholder {
-  color: #999; /* Set the color of the placeholder text */
-  pointer-events: none; /* Allows the editor to receive input, not the placeholder */
-  transition: opacity 0.3s; /* Add a transition effect for smoother visibility changes */
-}
-
-.placeholder.hidden {
-  opacity: 0; /* Hide the placeholder when not visible */
-}

@@ -21,15 +21,22 @@
       </mat-tab>
       <mat-tab label="Code GPT">
         <div id="fileListDisplay">
-              <p style="display: inline-block;">test</p>
-              <mat-form-field  >
-                <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple (ngModelChange)="onFileSelectionChange()">
-                  <mat-option *ngFor="let file of files" [value]="file">
-                    <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
-                    {{ file.name }}
-                  </mat-option>
-                </mat-select> 
-              </mat-form-field>
+              <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
+              <div style="display: flex;">
+
+                <mat-form-field  >
+                  <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple (ngModelChange)="onFileSelectionChange()">
+                    <mat-option *ngFor="let file of files" [value]="file">
+                      <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
+                      {{ file.name }}
+                    </mat-option>
+                  </mat-select> 
+                </mat-form-field>
+                <button type="button" class="btn btn-primary" (click)="sendQuery()">
+                  <i class="fa fa-play run-icon"></i>
+                  Send Query
+                </button>
+              </div>
         </div>
         <ngx-codemirror #gptgenerate [(ngModel)]="editorContent" [options]="{
           theme: 'material',
