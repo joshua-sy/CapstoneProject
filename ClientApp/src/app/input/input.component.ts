@@ -30,11 +30,8 @@ export class InputComponent implements OnInit {
   
   //Enter your api key here...
   apiKey = ''
-  
-  isPlaceholderVisible: boolean = true; 
-  isLoadingResponse: boolean = false; 
 
-  lastEnteredLine = '';
+  lastEnteredMessage = '';
   editorContent = '';
   apiResponse = '';
   
@@ -42,36 +39,31 @@ export class InputComponent implements OnInit {
 
   // Define a method to handle "Enter" key press
   onKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      this.handleEnterKey();
-    }
-    else if (event.key == 'Backspace') {
-      if (this.lastEnteredLine.length > 0) {
+    if (event.key == 'Backspace') {
+      if (this.lastEnteredMessage.length > 0) {
         // Remove the last letter from the string
-        this.lastEnteredLine = this.lastEnteredLine.slice(0, -1);
+        this.lastEnteredMessage = this.lastEnteredMessage.slice(0, -1);
       }
-    }
-    else if (this.allowedKeys.includes(event.key) ) {
-      this.lastEnteredLine += event.key;
+    } else if (event.key == 'Enter'){
+      this.lastEnteredMessage = this.lastEnteredMessage + '\n';
+
+    } else if (this.allowedKeys.includes(event.key) ) {
+      this.lastEnteredMessage += event.key;
     }
   }
 
   sendQuery() {
-    console.log("sent query");
+    console.log("calling api");
+    console.log("last entered message: ", this.lastEnteredMessage)
+    // this.doOpenAICall();
+    this.lastEnteredMessage = '';
   }
+
   onFileSelectionChange(): void {
     // Perform any additional logic based on the selectedFiles array
     console.log('Selected Files:', this.selectedFiles);
   }
 
-  handleEnterKey() {
-    this.isLoadingResponse = true;
-    this.isPlaceholderVisible = true;
-    console.log("enter pressed line is ", this.lastEnteredLine);
-    console.log("calling api");
-    // this.doOpenAICall();
-    this.lastEnteredLine = '';
-  }
   onTabChange(event: MatTabChangeEvent): void {
     if (event.index === 2){    
       if (this.gptgenerate && this.gptgenerate.codeMirror) {
@@ -92,7 +84,6 @@ export class InputComponent implements OnInit {
 
   onEditorContentChange(newValue: string) {
     this.editorContent = newValue;
-    this.isPlaceholderVisible = this.editorContent.trim() === ''; 
   }
 
 
@@ -101,7 +92,7 @@ export class InputComponent implements OnInit {
     const messages: Message[] = [
       {
         content:
-          this.lastEnteredLine,
+          this.lastEnteredMessage,
         role: 'user',
       },
     ];
@@ -118,8 +109,6 @@ export class InputComponent implements OnInit {
       // The third parameter in subscribe is the complete callback
       // It's called when the response is fully received
       console.log(apiResponse);
-      this.isLoadingResponse = false; 
-      this.isPlaceholderVisible = false;
       this.editorContent += "Gpt Response: " + apiResponse + '\n';
     });
 
