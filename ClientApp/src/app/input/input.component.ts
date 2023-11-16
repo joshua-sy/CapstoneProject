@@ -56,6 +56,7 @@ export class InputComponent implements OnInit {
     console.log("calling api");
     console.log("last entered message: ", this.lastEnteredMessage)
     console.log('Selected Files:', this.selectedFiles);
+    this.editorContent += '\n';
     let filesData = this.collateSelectedFilesData();
     let message = filesData.length == 0 ? this.lastEnteredMessage : this.lastEnteredMessage + filesData;
     this.doOpenAICall(message);
@@ -111,11 +112,8 @@ export class InputComponent implements OnInit {
       'gpt-3.5-turbo',
       this.apiKey
     ).subscribe((partialResponse: string) => {
-      // Append the partial response to the existing content
       apiResponse = partialResponse;
     }, null, () => {
-      // The third parameter in subscribe is the complete callback
-      // It's called when the response is fully received
       console.log(apiResponse);
       this.editorContent += "Gpt Response: " + apiResponse + '\n';
     });
