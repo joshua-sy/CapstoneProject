@@ -25,10 +25,17 @@
     height: 100%;
   }
 }
+mat-form-field{
+  background-color: #fff;
+  border-radius: 4px;
+  width: 40%;
+  height: calc(1.5em + .75rem + 2px);
+  border: 1px solid #ced4da;
+  margin-right: 2%;
+}
 
 .split-view ngx-codemirror {
   display: grid;
-
 }
 
 .split-view ::ng-deep .CodeMirror {
@@ -41,12 +48,7 @@
   min-width: 12px;
 }
 
-.placeholder {
-  color: #999; /* Set the color of the placeholder text */
-  pointer-events: none; /* Allows the editor to receive input, not the placeholder */
-  transition: opacity 0.3s; /* Add a transition effect for smoother visibility changes */
+#fileListDisplay {
+  padding: 2%;
 }
 
-.placeholder.hidden {
-  opacity: 0; /* Hide the placeholder when not visible */
-}
