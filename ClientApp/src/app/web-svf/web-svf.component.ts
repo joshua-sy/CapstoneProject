@@ -4,6 +4,8 @@ import { InputComponent } from '../input/input.component';
 import { IFile } from '../models/file';
 import { OutputComponent } from '../output/output.component';
 import { SvfService } from '../svf.service';
+import { ErrorDialog } from '../web-svf/error-dialog/error-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-web-svf',
@@ -14,7 +16,7 @@ export class WebSvfComponent implements OnInit {
   selectedFile: IFile;
   selectedLlvm: string;
   files: IFile[] = [];
-  constructor(private svfService: SvfService) { }
+  constructor(private svfService: SvfService, public dialog: MatDialog) { }
 
   @ViewChild('input') input: InputComponent;
   @ViewChild('output') output: OutputComponent;
@@ -23,7 +25,15 @@ export class WebSvfComponent implements OnInit {
   ngOnInit(): void {
     this.initialiseDirectory();
   }
+  openDialog() {
+    const dialogRef = this.dialog.open(ErrorDialog, {
+      height: '350px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   run($event) {
     this.svfService.run({ input: this.selectedFile.data, compileOptions: $event }).subscribe(
       (result) => {
@@ -33,6 +43,7 @@ export class WebSvfComponent implements OnInit {
         console.log(result);
       },
       (error) => {
+        this.openDialog();
         console.error(error);
       }
     );
