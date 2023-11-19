@@ -27,10 +27,16 @@
             <div style="display: flex;">
               <mat-form-field  >
                   <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple>
-                    <mat-option *ngFor="let file of files" [value]="file">
+                    <mat-optgroup *ngFor="let group of dropdownList" [label]="group.name">
+                      <mat-option *ngFor="let item of group.section" [value]="item.value">
+                        <mat-checkbox [(ngModel)]="item.selected"></mat-checkbox>
+                        {{item.value}}
+                      </mat-option>
+                    </mat-optgroup>
+                    <!-- <mat-option *ngFor="let file of files" [value]="file">
                       <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
                       {{ file.name }}
-                    </mat-option>
+                    </mat-option> -->
                   </mat-select> 
                 </mat-form-field>
                 <button type="button" class="btn btn-primary" (click)="sendQuery()">
