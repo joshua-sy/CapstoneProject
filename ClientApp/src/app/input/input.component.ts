@@ -91,7 +91,7 @@ export class InputComponent implements OnInit {
       apiResponse = partialResponse;
     }, null, () => {
       console.log("response, ", apiResponse);
-      this.apiResponseContent = "Gpt Response: " + apiResponse + '\n';
+      this.apiResponseContent = "GPT Response: " + apiResponse + '\n';
     });
 
   }
