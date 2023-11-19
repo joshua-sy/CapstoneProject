@@ -1,7 +1,6 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
-import {MatSelectModule} from '@angular/material/select';
+
 
 @Component({
   selector: 'app-toolbar',
@@ -47,6 +46,7 @@ export class ToolbarComponent implements OnInit {
   getCheckedString(): string {
     return this.list.filter(item => item.checked).map(item => item.name).join(' ');
   }
+
 
   run() {
     if (this.selectedOption === 'List') {
