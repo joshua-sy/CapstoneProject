@@ -1,6 +1,7 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,8 +13,13 @@ export class ToolbarComponent implements OnInit {
   compileOptions: string;
 
   list : any[];
-
+  options : any[];
   constructor(){
+    this.options = [
+        {value: 'List'},
+        {value: 'Input'},
+    ];
+
     this.list = 
       [
         {name :'-g',checked : true},
@@ -32,6 +38,8 @@ export class ToolbarComponent implements OnInit {
 
   @Output() runEventEmitter = new EventEmitter<string>();
 
+  selectedOption: string;
+
   ngOnInit(): void {
     this.resetCompileOptions();
   }
@@ -41,8 +49,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   run() {
-    console.log("compile options:", this.getCheckedString());
-    this.runEventEmitter.emit(this.getCheckedString());
+    if (this.selectedOption === 'List') {
+      console.log("compile options:", this.getCheckedString());
+      this.runEventEmitter.emit(this.getCheckedString());
+    } else {
+      console.log("compile options input:", this.compileOptions);
+      this.runEventEmitter.emit(this.compileOptions);
+    }
   }
 
   resetCompileOptions() { 

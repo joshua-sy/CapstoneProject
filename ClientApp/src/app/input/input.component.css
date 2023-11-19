@@ -25,10 +25,17 @@
     height: 100%;
   }
 }
+mat-form-field{
+  background-color: #fff;
+  border-radius: 4px;
+  width: 40%;
+  height: calc(1.5em + .75rem + 2px);
+  border: 1px solid #ced4da;
+  margin-right: 2%;
+}
 
 .split-view ngx-codemirror {
-  flex: 1;
-  display: flex;
+  display: grid;
 }
 
 .split-view ::ng-deep .CodeMirror {
@@ -39,4 +46,26 @@
 .split-view .spacer {
   flex: 0;
   min-width: 12px;
+}
+
+.bodyContent {
+  margin: 2%;
+}
+
+.fileListDisplay {
+  margin-bottom: 2%;
+}
+
+.fileListDisplay p {
+  font-size: 18px;
+}
+
+.queryAndResponse {
+  width: 100%;
+  font-size: 16px;
+}
+
+.queryAndResponse textarea {
+  width: inherit;
+  border-radius: 4px;
 }

@@ -9,10 +9,10 @@ import {Component,Input,Output,EventEmitter} from '@angular/core';
 export class MultiSelectDropdownComponent {
   @Input() list:any[]; 
     
-    @Output() shareCheckedList = new EventEmitter();
-    @Output() shareIndividualCheckedList = new EventEmitter();
+  @Output() shareCheckedList = new EventEmitter();
+  @Output() shareIndividualCheckedList = new EventEmitter();
     
-    
+  
     checkedList : any[];
     showDropDown : boolean;
 
@@ -21,7 +21,6 @@ export class MultiSelectDropdownComponent {
         this.checkedList = ["-S", "-c", "-g", "-fno-discard-value-names", "-emit-llvm"];
         this.showDropDown = false;
     }
-
        getSelectedValue(status:Boolean,value:String){
         if(status){
           this.checkedList.push(value);  

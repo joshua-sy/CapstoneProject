@@ -3,15 +3,12 @@
 **/
 .drop-toggle{
     background-color: #fff;
-    border: none;
     padding: 5px 10px;
     border-radius: 4px;
-    cursor: pointer;
-    cursor: hand;
     border: 1px solid #ccc;
-    width: 233px;
     text-align: left;
     height: calc(1.5em + .75rem + 2px);
+    overflow: auto;
 }
 
 .inline {

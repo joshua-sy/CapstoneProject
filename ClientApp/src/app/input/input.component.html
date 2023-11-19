@@ -1,13 +1,16 @@
 <div class="split-view">
-    <mat-tab-group mat-align-tabs="start">
+    <mat-tab-group (selectedTabChange)="onTabChange($event)" mat-align-tabs="start">
       <mat-tab label="C Code">
         <ngx-codemirror #codeMirror [(ngModel)]="selectedFile.data" [options]="{
           lineNumbers: true,
           theme: 'material',
           mode: 'clike',
-          viewportMargin: '20'
+          viewportMargin: '20',
+          lineWrapping: true
+
         }"></ngx-codemirror>
       </mat-tab>
+
       <mat-tab label="LLVM">
         <ngx-codemirror [(ngModel)]="selectedLlvm" [options]="{
           lineNumbers: true,
@@ -15,6 +18,41 @@
           mode: 'clike',
           viewportMargin: '20'
         }"></ngx-codemirror>
+      </mat-tab>
+      <mat-tab label="Code GPT" style="padding: 2%;">
+        <div class="bodyContent">
+
+          <div class="fileListDisplay">
+            <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
+            <div style="display: flex;">
+              <mat-form-field  >
+                  <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple>
+                    <mat-option *ngFor="let file of files" [value]="file">
+                      <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
+                      {{ file.name }}
+                    </mat-option>
+                  </mat-select> 
+                </mat-form-field>
+                <button type="button" class="btn btn-primary" (click)="sendQuery()">
+                  <i class="fa fa-play run-icon"></i>
+                  Send Query
+                </button>
+              </div>
+            </div>
+            <div class="queryAndResponse">
+              
+              <textarea #gptInput 
+              rows="5"
+              placeholder="Start typing your request here..."
+              [(ngModel)]="gptInputQuery"
+              >
+            </textarea>
+
+            <div #apiResponse style="color: white;">
+              {{apiResponseContent}}
+            </div>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
 </div>
