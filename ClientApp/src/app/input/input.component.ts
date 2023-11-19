@@ -17,6 +17,7 @@ export class InputComponent implements OnInit {
   @Input() selectedLlvm: string;
   @Input() files: IFile[];
   
+  dropdownList = {};
 
   @ViewChild('gptInput') gptInput: any; 
 
@@ -27,17 +28,22 @@ export class InputComponent implements OnInit {
   
   apiKey = ''
 
-  editorContent = '';
   apiResponse = '';
   gptInputQuery = '';  
   apiResponseContent = '';
+
   ngOnInit(): void {
+
   }
   
   onTabChange(event: MatTabChangeEvent): void {
     if (event.index === 2){    
       if (this.gptInput && this.gptInput.codeMirror) {
-        this.gptInput.codeMirror.setValue(this.editorContent);
+        this.dropdownList = [
+          { name: "Files", section: this.files},
+          { name: "Current LLVM", section: [{ value: this.selectedLlvm, selected: false }] },
+          { name: "Graphs", section: [] }
+        ]
       }
   }}
 
@@ -66,7 +72,6 @@ export class InputComponent implements OnInit {
     this.apiResponseContent = "Loading response..."
     console.log("get input query: ", this.gptInputQuery)
     console.log('Selected Files:', this.selectedFiles);
-    this.editorContent += '\n';
     let filesData = this.collateSelectedFilesData();
     let message = filesData.length == 0 ? this.gptInputQuery : this.gptInputQuery + filesData;
     this.doOpenAICall(message);
@@ -91,7 +96,7 @@ export class InputComponent implements OnInit {
       apiResponse = partialResponse;
     }, null, () => {
       console.log("response, ", apiResponse);
-      this.apiResponseContent = "Gpt Response: " + apiResponse + '\n';
+      this.apiResponseContent = "GPT Response: " + apiResponse + '\n';
     });
 
   }
