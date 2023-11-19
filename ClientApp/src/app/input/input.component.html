@@ -19,11 +19,13 @@
           viewportMargin: '20'
         }"></ngx-codemirror>
       </mat-tab>
-      <mat-tab label="Code GPT">
-        <div id="fileListDisplay">
-              <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
-              <div style="display: flex;">
-                <mat-form-field  >
+      <mat-tab label="Code GPT" style="padding: 2%;">
+        <div class="bodyContent">
+
+          <div class="fileListDisplay">
+            <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
+            <div style="display: flex;">
+              <mat-form-field  >
                   <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple>
                     <mat-option *ngFor="let file of files" [value]="file">
                       <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
@@ -36,19 +38,19 @@
                   Send Query
                 </button>
               </div>
+            </div>
+            <div class="queryAndResponse">
+              
+              <textarea #gptInput placeholder="Start typing your request here..."
+              [(ngModel)]="gptInputQuery"
+              >
+            </textarea>
+
+            <div #apiResponse style="color: white;">
+              {{apiResponseContent}}
+            </div>
+          </div>
         </div>
-        <ngx-codemirror #gptgenerate [(ngModel)]="editorContent" [options]="{
-          theme: 'material',
-          viewportMargin: '20',
-          lineWrapping: true,
-          extraKeys: {
-            Enter: false
-          }
-        }" 
-        (keydown)="onKeyDown($event)"
-        (ngModelChange)="onEditorContentChange($event)"
-        >
-      </ngx-codemirror>
       </mat-tab>
     </mat-tab-group>
 </div>

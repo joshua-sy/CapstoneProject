@@ -13,72 +13,34 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 
 export class InputComponent implements OnInit {
-  showLlvm: boolean = false;
   @Input() selectedFile: IFile;
   @Input() selectedLlvm: string;
   @Input() files: IFile[];
-  selectedFiles: any[] = [];
+  
+
+  @ViewChild('gptInput') gptInput: any; 
 
   constructor(private elementRef:ElementRef, private readonly openAiService:OpenAIService ) { }
   
-  @ViewChild('gptgenerate') gptgenerate: any; 
-
-
-  ngOnInit(): void {
-    this.editorContent = "Hi! Welcome to Code GPT. Edit this and enter your query..."
-  }
+  showLlvm: boolean = false;
+  selectedFiles: any[] = [];
   
-  //Enter your api key here...
   apiKey = ''
 
-  lastEnteredMessage = '';
   editorContent = '';
   apiResponse = '';
+  gptInputQuery = '';  
+  apiResponseContent = '';
+  ngOnInit(): void {
+  }
   
-  allowedKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:'\",.<>?/\\~`-= ";
-
-  // Define a method to handle "Enter" key press
-  onKeyDown(event: KeyboardEvent) {
-    if (event.key == 'Backspace') {
-      if (this.lastEnteredMessage.length > 0) {
-        // Remove the last letter from the string
-        this.lastEnteredMessage = this.lastEnteredMessage.slice(0, -1);
-      }
-    } else if (event.key == 'Enter'){
-      this.lastEnteredMessage = this.lastEnteredMessage + '\n';
-
-    } else if (this.allowedKeys.includes(event.key) ) {
-      this.lastEnteredMessage += event.key;
-    }
-  }
-
-  sendQuery() {
-    console.log("calling api");
-    console.log("last entered message: ", this.lastEnteredMessage)
-    console.log('Selected Files:', this.selectedFiles);
-    this.editorContent += '\n';
-    let filesData = this.collateSelectedFilesData();
-    let message = filesData.length == 0 ? this.lastEnteredMessage : this.lastEnteredMessage + filesData;
-    this.doOpenAICall(message);
-    this.lastEnteredMessage = '';
-  }
-
-  collateSelectedFilesData(): string {
-    // Perform any additional logic based on the selectedFiles array
-    let filesDataStr = '';
-    this.selectedFiles.forEach(file=>{
-      filesDataStr += '\n' + file.name + '\n' + file.data;
-    })
-    console.log(filesDataStr);
-    return filesDataStr;
-  }
-
   onTabChange(event: MatTabChangeEvent): void {
     if (event.index === 2){    
-      if (this.gptgenerate && this.gptgenerate.codeMirror) {
-        this.gptgenerate.codeMirror.setValue(this.editorContent);
+      if (this.gptInput && this.gptInput.codeMirror) {
+        this.gptInput.codeMirror.setValue(this.editorContent);
       }
   }}
+
   selectLine(lineNumber) {
     console.log(lineNumber);
     let code = this.elementRef.nativeElement.querySelectorAll('.CodeMirror-code')[0];
@@ -88,13 +50,27 @@ export class InputComponent implements OnInit {
       code.children[i].style.background = "unset";
     }
     code.children[lineNumber - 1].style.background = "Yellow";
-
+  }
+  
+  collateSelectedFilesData(): string {
+    // Perform any additional logic based on the selectedFiles array
+    let filesDataStr = '';
+    this.selectedFiles.forEach(file=>{
+      filesDataStr += file.name + '\n' + file.data + '\n';
+    })
+    console.log(filesDataStr);
+    return filesDataStr;
   }
 
-  onEditorContentChange(newValue: string) {
-    this.editorContent = newValue;
+  sendQuery() {
+    this.apiResponseContent = "Loading response..."
+    console.log("get input query: ", this.gptInputQuery)
+    console.log('Selected Files:', this.selectedFiles);
+    this.editorContent += '\n';
+    let filesData = this.collateSelectedFilesData();
+    let message = filesData.length == 0 ? this.gptInputQuery : this.gptInputQuery + filesData;
+    this.doOpenAICall(message);
   }
-
 
   public doOpenAICall(queryMessage:string) {
     let apiResponse = '';
@@ -114,8 +90,8 @@ export class InputComponent implements OnInit {
     ).subscribe((partialResponse: string) => {
       apiResponse = partialResponse;
     }, null, () => {
-      console.log(apiResponse);
-      this.editorContent += "Gpt Response: " + apiResponse + '\n';
+      console.log("response, ", apiResponse);
+      this.apiResponseContent = "GPT Response: " + apiResponse + '\n';
     });
 
   }
