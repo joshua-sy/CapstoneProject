@@ -26,6 +26,7 @@ import { MultiSelectDropdownComponent } from './toolbar/multi-select-dropdown/mu
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DirectoryComponent } from './directory/directory.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ErrorDialog } from './web-svf/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
     ToolbarComponent,
     MultiSelectDropdownComponent,
     DirectoryComponent,
+    ErrorDialog,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
