@@ -25,9 +25,11 @@ export class WebSvfComponent implements OnInit {
   ngOnInit(): void {
     this.initialiseDirectory();
   }
-  openDialog() {
+  openDialog(errorMessage:string) {
     const dialogRef = this.dialog.open(ErrorDialog, {
-      height: '350px'
+      height: '350px',
+      data: { errorMessage }
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -43,7 +45,8 @@ export class WebSvfComponent implements OnInit {
         console.log(result);
       },
       (error) => {
-        this.openDialog();
+        let errorMessage = error.message + ". There was a compilation error in your code that prevented an LLVM file from being generated. Please fix thid error and try again."
+        this.openDialog(errorMessage);
         console.error(error);
       }
     );
