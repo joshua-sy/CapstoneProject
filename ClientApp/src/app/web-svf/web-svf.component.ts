@@ -75,6 +75,7 @@ export class WebSvfComponent implements OnInit {
 
   switchFile(file) {
     this.selectedFile = file;
+    this.selectedLlvm = '';
   }
 
   selectLineOnInput(event) {
