@@ -24,20 +24,17 @@
 
           <div class="fileListDisplay">
             <p>Hi! Welcome to CodeGPT. Type in your query, attach any files you would like to, and click send!</p>
+            <p>Note: If the LLVM file or compiled graphs are not available, run your code and try again.</p>
             <div style="display: flex;">
               <mat-form-field  >
-                  <mat-select placeholder="Select Files" [(ngModel)]="selectedFiles" multiple>
-                    <mat-optgroup *ngFor="let group of dropdownList" [label]="group.name">
-                      <mat-option *ngFor="let item of group.section" [value]="item.value">
-                        <mat-checkbox [(ngModel)]="item.selected"></mat-checkbox>
-                        {{item.value}}
-                      </mat-option>
-                    </mat-optgroup>
-                    <!-- <mat-option *ngFor="let file of files" [value]="file">
-                      <mat-checkbox [(ngModel)]="file.selected"></mat-checkbox>
-                      {{ file.name }}
-                    </mat-option> -->
-                  </mat-select> 
+                <mat-select placeholder="Select Files" [formControl]="form" multiple>
+                  <mat-optgroup *ngFor="let group of dropdownList" [label]="group.name" [disabled]="group.disabled">
+                    <mat-option *ngFor="let item of group.value" [value]="item">
+                      <mat-checkbox ([ngModel])="item.selected"></mat-checkbox>
+                        {{ item.name }}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
                 </mat-form-field>
                 <button type="button" class="btn btn-primary" (click)="sendQuery()">
                   <i class="fa fa-play run-icon"></i>

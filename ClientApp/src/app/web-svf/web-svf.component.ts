@@ -16,6 +16,8 @@ export class WebSvfComponent implements OnInit {
   selectedFile: IFile;
   selectedLlvm: string;
   files: IFile[] = [];
+  graphsList = []
+  createdFiles = 1;
   constructor(private svfService: SvfService, public dialog: MatDialog) { }
 
   @ViewChild('input') input: InputComponent;
@@ -41,6 +43,7 @@ export class WebSvfComponent implements OnInit {
       (result) => {
         this.output.output += '\n' + result.output;
         this.graphs.outputs = result.graphs;
+        this.graphsList = result.graphs;
         this.selectedLlvm = result.llvm;
         console.log(result);
       },
@@ -54,8 +57,8 @@ export class WebSvfComponent implements OnInit {
 
   initialiseDirectory() {
     this.files.push({
-      id: this.files.length,
-      name: 'New File',
+      id: this.createdFiles,
+      name: 'New Project',
       data: "#include <stdio.h>\nint main() {\n   \/\/ printf() displays the string inside quotation\n   printf(\"Hello, World!\");\n   return 0;\n};"
     });
     this.selectedFile = this.files[0];
@@ -63,9 +66,10 @@ export class WebSvfComponent implements OnInit {
   }
 
   createNewFile() {
+    this.createdFiles += 1;
     const newFile = {
-      id: this.files.length,
-      name: 'New File ' + this.files.length,
+      id: this.createdFiles,
+      name: 'New Project ' + this.createdFiles,
       data: "Enter your code here..."
     };
     this.files.push(newFile);
@@ -76,6 +80,7 @@ export class WebSvfComponent implements OnInit {
   switchFile(file) {
     this.selectedFile = file;
     this.selectedLlvm = '';
+    this.graphsList = [];
   }
 
   selectLineOnInput(event) {
