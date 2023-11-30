@@ -8,14 +8,14 @@
     <as-split-area class="graphs" [size]="45">
       <as-split direction="vertical" [gutterSize]="5">
         <as-split-area class="input" [size]="67">
-          <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm" [(files)]="files"></app-input>
+          <app-input #input [(selectedFile)]="selectedFile" [(selectedLlvm)]="selectedLlvm" [(files)]="files" [(graphsList)]="graphsList"></app-input>
         </as-split-area>
       </as-split>
     </as-split-area>
     <as-split-area class="graphs" [size]="45">
       <as-split direction="vertical" [gutterSize]="5">
         <as-split-area class="graphs" [size]="50">
-          <app-graphs #graphs (selectLineOnInput)="selectLineOnInput($event)"></app-graphs>
+          <app-graphs #graphs  (selectLineOnInput)="selectLineOnInput($event)"></app-graphs>
         </as-split-area>
         <as-split-area class="output" [size]="50">
           <app-output #output></app-output>
