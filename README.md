@@ -1,3 +1,8 @@
+# CapstoneProject Spring 2023
+# Project Members
+
+-   Isha Shroff  -   z5316569@ad.unsw.edu.au / ishasshroff@gmail.com (preferred)
+
 # CapstoneProject Spring 2022
 # Project Members
 
