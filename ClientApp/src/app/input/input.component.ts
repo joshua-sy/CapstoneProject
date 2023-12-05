@@ -50,12 +50,15 @@ export class InputComponent implements OnInit {
   collateSelectedFilesData(): string {
     console.log(this.form.value);
     let filesDataStr = '';
-    this.form.value.forEach(file=>{
-      filesDataStr += file.name + '\n' + file.data + '\n';
-    })
-    console.log(filesDataStr);
-    return filesDataStr;
-  }
+    if (this.form.value) {
+
+      this.form.value.forEach(file=>{
+        filesDataStr += file.name + '\n' + file.data + '\n';
+      })
+    }
+      console.log(filesDataStr);
+      return filesDataStr;
+    }
 
   sendQuery() {
     this.apiResponseContent = "Loading response..."
