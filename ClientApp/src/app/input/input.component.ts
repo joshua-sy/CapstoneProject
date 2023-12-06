@@ -4,8 +4,7 @@ import { IFile } from '../models/file';
 import { OpenAIService, Message } from './inputApiCall';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { FormControl } from '@angular/forms';
-
-//TODO limit
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-input',
@@ -27,7 +26,7 @@ export class InputComponent implements OnInit {
   form: FormControl;
   dropdownList=[]
   showLlvm: boolean = false;
-  apiKey = ''
+  apiKey = environment.apiKey;
   
   apiResponse = '';
   gptInputQuery = '';  
