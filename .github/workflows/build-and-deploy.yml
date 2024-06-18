@@ -24,9 +24,6 @@ jobs:
       
       - name: Build
         run: dotnet build --no-restore -c Release
-
-      - name: Install dependencies with npm
-        run: npm install --legacy-peer-deps
       
       - name: Publish app for deploy
         run: dotnet publish --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
