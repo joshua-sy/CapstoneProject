@@ -18,15 +18,15 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.NETCORE_VERSION }}
-
-      - name: Install dependencies with npm
-        run: npm install --legacy-peer-deps
     
       - name: Restore
         run: dotnet restore
       
       - name: Build
         run: dotnet build --no-restore -c Release
+
+      - name: Install dependencies with npm
+        run: npm install --legacy-peer-deps
       
       - name: Publish app for deploy
         run: dotnet publish --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
